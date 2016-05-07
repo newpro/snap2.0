@@ -29,7 +29,7 @@ New SNAP interface is expect to have unified interface links to physical sensors
 	* Trigger group of devices to follow a sets of commands for testing:
 		* Processing logic: a set of commands to test one logic set, testing results equal to expect results
 
-### [&#xf024;] **Minimum functionailities**
+### [&#xf066;] **Minimum functionailities**
 The minimum functionalities of this module should include the followings:
 
 #### Display
@@ -44,7 +44,7 @@ The minimum functionalities of this module should include the followings:
 * Transactions by arrows
 
 #### Devices setups
-In order to control the devices, the system use HTTP/HTTPs:
+In order to control the devices, the system use HTTP/HTTPs to:
 
 * Detect the devices
 * Link the commands to the actual http requests
