@@ -23,6 +23,7 @@ New SNAP interface is expect to have unified interface links to physical sensors
 	* Change the status, probability, and transactions
 
 * Devices control & feedbacks
+	* Add devices
 	* Feed forward and backward testing: 
 		* trigger individual devices to follow a command for device testing
 	* Trigger group of devices to follow a sets of commands for testing:
@@ -36,10 +37,28 @@ The minimum functionalities of this module should include the followings:
 * Response from devices
 	* Online status
 	* Response status
+
 #### Edit
 * Status by uml boxes
 * Probability by labels on uml boxes
 * Transactions by arrows
+
+#### Devices setups
+In order to control the devices, the system use HTTP/HTTPs:
+
+* Detect the devices
+* Link the commands to the actual http requests
+	* automatically link commands to requests for pervious recogonized devices sets
+	* free to modify the links and the commands
+
+* Trouble shooting devices
+
+>  Design decision: HTTP requests  [&#xf05a;]
+>  
+>  Why we are using http/https requests to communicate with devices instead of other methods or communication protocols?
+>  
+>  The main reason of the choice is http(s) protocol can be recognized and transferred regardless of the platforms and resources available, this allows to transfer our logic easily between different platforms with little or no change of the backend. For example, if we want to change the control from web to mobile, since mobile platform also use http requests as communication formats, it only need modification in the front end. 
+
 #### Errors capture
 * Raw errors return from device
 * Errors of impossible control flows
@@ -48,19 +67,21 @@ The minimum functionalities of this module should include the followings:
 ###  [&#xf19c;] **Standards** 
 
 #### Graph Interface
-* The graph is represented in UML, expected to follow [UML Standards 2.5](http://www.omg.org/spec/UML/2.5/)
-	>  Design decision: UML  [&#xf05a;]
-	> 
-	>  UML allows ppl to communicate better, giving the following advantages in this project:
-	> * Language and API independent: allow UI too isolated with backend logic modules
-	> * Universal and easy: UML is easy to understand by both developer and none developer, fit for both situations, good for convey unambiguous work flows
-	> * Built for OO: since we are focus on mapping situations and devices to real world, a OO approach is the way to go
-	> * Standardized 
+The graph is represented in UML, expected to follow [UML Standards 2.5](http://www.omg.org/spec/UML/2.5/)
+
+>  Design decision: UML  [&#xf05a;]
+> 
+>  UML allows ppl to communicate better, giving the following advantages in this project:
+> * Language and API independent: allow UI too isolated with backend logic modules
+> * Universal and easy: UML is easy to understand by both developer and none developer, fit for both situations, good for convey unambiguous work flows
+> * Built for OO: since we are focus on mapping situations and devices to real world, a OO approach is the way to go
+> * Standardized
 		
 ### [&#xf085;] **Frameworks**
 #### Control Flow Construction: [symbolicPerseusJava](https://cs.uwaterloo.ca/~jhoey/research/spudd/symbolicPerseusJava.tar.gz)
 
 * Java program to construct a control flow based on following variables:
+
 #### *Environment tracking*
 * **Environment variables (E):** depend on nothing 
 	* Variables sets to represent the environment state, with possibilities, and **at least one** of the environment variables set have to represent the target. Each variable track **one** of the followings:
@@ -137,7 +158,7 @@ The minimum functionalities of this module should include the followings:
 		* behaviour name
 		* environment variable name
 		* environment variable value
-* **Precondition of effects**: depend on EB
+* **Precondition of effects (PEB)**: depend on EB
 	* precondition in order to let the effect to have effect
 	* one variables set include:
 		* effect id
@@ -159,6 +180,17 @@ The minimum functionalities of this module should include the followings:
 		* name
 		* environment variable name
 		* environment variable value
+
+#### Device Control: Luup Library
+We used to use Vera as a platform to connect to devices. This should no longer be the only case, since the platform should be able to connect to any devices within the network. But still, for testing http requests propose, so we are continuing using Luup libary build by Mi Casa Verde (Vera) as our main focus. 
+
+[Here](http://wiki.micasaverde.com/index.php/Main_Page) is the details of the Vera set ups. 
+
+And [here](http://wiki.micasaverde.com/index.php/Luup_Requests) is the requests commands natively recognized by Vera. 
+
+For a general usages toward one kind of reconized and non-recognized devices support by Vera, find it [here](http://wiki.micasaverde.com/index.php/Luup_Devices), and arguments table can be find [here](http://wiki.micasaverde.com/index.php/Luup_UPnP_Variables_and_Actions).
+
+Although the overall Vera documentations are chaos and not well organized, all the informations you wants to find about Vera is indexed [here](http://wiki.micasaverde.com/index.php/Special:AllPages). 
 
 ### [&#xf073;] **Proposal**
 
@@ -185,3 +217,16 @@ There is challenges of integrate with the existing parts in order to work proper
 	* **Solution:** both of the problem can be solved by sync signal and message payload format. The communication message should contain two parts: 
 		* signal code (error, success, warning)
 		* message payload
+
+### [&#xf0e8;] **Implementation Structure**
+
+The structure of the implementation is separated by functionalities in to four main modules: design control, planning, device control, and plan execution. 
+
+* Design Control
+	* design control is the controller of the operation. It responsibility is take inputs that represent the environments, the assocated rewards and goals in order to builid the system.
+* Planning
+	* planning is the brain of the operation, its responsibility is construct the design tree based on information inputs from design control.
+* Device Control
+	* device control is the communication hub between the system and the sensors, so its responsibility include in setup map between commands and http requests.
+* Plan Execution and Testing
+	* plan execution is used to test with a real or virtual worlds to see if the logic is implementable correctly. Its responsibility include display testing feedbacks and trigger situations.
