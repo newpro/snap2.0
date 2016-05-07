@@ -225,7 +225,7 @@ The structure of the implementation is separated by functionalities in to four m
 * Design Control
 	* design control is the controller of the operation. It responsibility is take inputs that represent the environments, the assocated rewards and goals in order to builid the system.
 * Planning
-	* planning is the brain of the operation, its responsibility is construct the design tree based on information inputs from design control.
+	* planning is the brain of the operation, its responsibility is construct the decision tree based on information inputs from design control.
 * Device Control
 	* device control is the communication hub between the system and the sensors, so its responsibility include in setup map between commands and http requests.
 * Plan Execution and Testing
