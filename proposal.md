@@ -43,14 +43,13 @@ The minimum functionalities of this module should include the followings:
 * Probability by labels on uml boxes
 * Transactions by arrows
 
-#### Devices setups
+#### Devices Setups
 In order to control the devices, the system use HTTP/HTTPs to:
 
 * Detect the devices
 * Link the commands to the actual http requests
 	* automatically link commands to requests for pervious recogonized devices sets
 	* free to modify the links and the commands
-
 * Trouble shooting devices
 
 >  Design decision: HTTP requests  [&#xf05a;]
@@ -59,7 +58,26 @@ In order to control the devices, the system use HTTP/HTTPs to:
 >  
 >  The main reason of the choice is http(s) protocol can be recognized and transferred regardless of the platforms and resources available, this allows to transfer our logic easily between different platforms with little or no change of the backend. For example, if we want to change the control from web to mobile, since mobile platform also use http requests as communication formats, it only need modification in the front end. 
 
-#### Errors capture
+#### Simulation
+It should be able to provide testing environment disregard of the lack of hardware environment. The simulation environments should represent physical objects (non-human objects), sensor objects, and human objects in real world, and have exactly same behaviours as real worlds objects.
+
+* Specify physical object in the environment, and all the status it can have
+* Specify initial status of all physical objects
+* Specify sensor objects, their error rate, and which variable they can detect
+* Specify human objects that have abilities and issue interaction with objects in the environments 
+* Allow humans objects in the environments to interact with physical objects 
+
+>  Debate: Simulation  [&#xf1d0; - &#xf1d1;]
+> 
+> Is the existence of simulation really necessary?
+> 
+> Since the system is intended to build for work along with all sensor environments, is it make more sense to test and work with the actual sensor system instead of create virtual environment that simulate the actual sensor system?
+> 
+> There is no right or wrong about this. The disadvantage of use virtual environment for testing is it does not allow hardware problems and the errors happened to surface, which should clearly be part of SNAP responsibilities to detect those errors. For those reasons there might be error happens in the system design and planning phase, result in the designed knowledge base is useless or completely useless for the actual hardware system. Also this result in a longer testing cycle (test in both virtual environment and real world environment). The advantage is it isolates the hardware system, so engineers and computer scientists can focus on construct knowledge base without much of hardware considerations and set ups. It is a trade off between correctness and decoupling in testing systems.
+
+#### Errors Capture
+The platform should be able to capture all the errors correctly on and between every stages and modules, and display all correctly. 
+
 * Raw errors return from device
 * Errors of impossible control flows
 * Errors of failure of interface during executions
@@ -82,7 +100,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 
 * Java program to construct a control flow based on following variables:
 
-#### *Environment tracking*
+#### *Environment Status*
 * **Environment variables (E):** depend on nothing 
 	* Variables sets to represent the environment state, with possibilities, and **at least one** of the environment variables set have to represent the target. Each variable track **one** of the followings:
 		* status of the components in real world
@@ -96,7 +114,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 		* bin lid open/close with 0.01, 0.99
 		* tea bag in/not in the bin with 0, 1
 
-#### *Human tracking*
+#### *Human Status*
 * **Behavior variables (B):** depend on E
 	* track the behaviour of human
 		* each variable set represent one behaviour and timeout to fit **all** of the followings:
@@ -121,7 +139,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 		* initial probability: prob for knowledge of this person process this ability (do not know is 0.5)
 		* ability prompt cost: reward system calculation (ideally 1)
 
-#### *Sensor tracking*
+#### *Sensor Status*
 * **Observation variables (O):** depend on nothing
 	* similar to tracking variables (environment or behaviors variables), except it is observation
 	* a observation can be one of the following:
@@ -150,7 +168,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 		* behaviour name
 		* probability
 	
-#### *Effect tracking*
+#### *Effect Status*
 * **Effect of Behaviours (EB)**: depend on B and E
 	* link between behaviour and Environment, what the behaviour doing to the world
 	* one variables set include: 
@@ -228,5 +246,11 @@ The structure of the implementation is separated by functionalities in to four m
 	* planning is the brain of the operation, its responsibility is construct the decision tree based on information inputs from design control.
 * Device Control
 	* device control is the communication hub between the system and the sensors, so its responsibility include in setup map between commands and http requests.
-* Plan Execution and Testing
+* Plan Execution, Simulation and Testing
 	* plan execution is used to test with a real or virtual worlds to see if the logic is implementable correctly. Its responsibility include display testing feedbacks and trigger situations.
+
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+```
