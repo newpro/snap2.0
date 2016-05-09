@@ -252,4 +252,4 @@ The structure of the implementation is separated by functionalities in to four m
 * Simulation
 	* Simulation is intended to replace device hub and human interaction with device hub, it should simulate all physical objects, human objects, and sensor objects, get command from reasoning and response accordingly. 
 
-![structure_overview](diagrams/structure_overview.svg?raw=true "structure")
+![structure_overview](diagrams/structure_overview.png)
