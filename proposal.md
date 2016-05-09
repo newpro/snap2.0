@@ -183,14 +183,14 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 		* environment variable name
 		* environment variable value
 
-#### *Target tracking*
+#### *Target Status*
 * **Goals:** one or more environment variable and value
 * **Initial state (task state):** one or more environment variable and value
 * **Abilities:** abilities needed to perform the task
 * **Behaviour:** one or more behaviours needed to reach the goal
 * **probability:** 1
 
-#### *Reward tracking*
+#### *Reward Status*
 * **Reward:** 
 	* one variable set include
 		* id
@@ -236,21 +236,20 @@ There is challenges of integrate with the existing parts in order to work proper
 		* signal code (error, success, warning)
 		* message payload
 
+
 ### [&#xf0e8;] **Implementation Structure**
 
 The structure of the implementation is separated by functionalities in to four main modules: design control, planning, device control, and plan execution. 
 
 * Design Control
-	* design control is the controller of the operation. It responsibility is take inputs that represent the environments, the assocated rewards and goals in order to builid the system.
+	* Design control is the controller of the operation. It responsibility is take inputs that represent the environments, the assocated rewards and goals in order to builid the system.
 * Planning
-	* planning is the brain of the operation, its responsibility is construct the decision tree based on information inputs from design control.
-* Device Control
-	* device control is the communication hub between the system and the sensors, so its responsibility include in setup map between commands and http requests.
-* Plan Execution, Simulation and Testing
-	* plan execution is used to test with a real or virtual worlds to see if the logic is implementable correctly. Its responsibility include display testing feedbacks and trigger situations.
+	* Planning is the brain of the operation, its responsibility is construct the decision tree based on information inputs from design control.
+* Device Hub
+	* Device Hub is the communication hub between the reasoning system and the sensors, so its responsibility include in setup map between commands and http requests.
+* Tracking and Reasoning
+	* Reasoning is the command central for all real time interaction. It collect the status of devices, compute what to do, and issue next command to devices. Plan execution is intended to test with a real or virtual worlds to see if the logic is implementable correctly. Its responsibility include display testing feedbacks and trigger situations.
+* Simulation
+	* Simulation is intended to replace device hub and human interaction with device hub, it should simulate all physical objects, human objects, and sensor objects, get command from reasoning and response accordingly. 
 
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
+![structure_overview](diagrams/structure_overview.svg)
