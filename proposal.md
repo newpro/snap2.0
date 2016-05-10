@@ -35,7 +35,9 @@ New SNAP interface is expect to have unified interface links to physical sensors
 	* Trigger group of devices to follow a sets of commands for testing:
 		* Processing logic: a set of commands to test one logic set, testing results equal to expect results
 
-![targets_overview](diagrams/targets.png)
+<p align="center">
+  <img src="diagrams/targets.png" width="550"/>
+</p>
 
 ### [&#xf066;] **Minimum functionailities**
 The minimum functionalities of this module should include the followings:
