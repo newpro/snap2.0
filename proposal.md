@@ -1,5 +1,5 @@
 
-[&#xf0eb;] **Syndetic Assistance Processes (SNAP) 2.0 Project Proposal**
+[&#xf0eb;] **Synthetic Assistance Processes (SNAP) 2.0 Project Proposal**
 -------------
 &#xf040; By Aaron Li, May 4, 2016. May the force.
 
@@ -41,7 +41,7 @@ New SNAP interface is expect to have unified interface links to physical sensors
   <img src="diagrams/targets.png" width="550"/>
 </p>
 
-### [&#xf066;] **Minimum functionailities**
+### [&#xf066;] **Minimum functionalities**
 The minimum functionalities of this module should include the followings:
 
 #### Display
@@ -61,7 +61,7 @@ In order to control the devices, the system use HTTP/HTTPs to:
 
 * Detect the devices
 * Link the commands to the actual http requests
-	* automatically link commands to requests for pervious recogonized devices sets
+	* automatically link commands to requests for pervious recognized devices sets
 	* free to modify the links and the commands
 * Trouble shooting devices
 
@@ -213,7 +213,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 		* environment variable value
 
 #### Device Control: Luup Library
-We used to use Vera as a platform to connect to devices. This should no longer be the only case, since the platform should be able to connect to any devices within the network. But still, for testing http requests propose, so we are continuing using Luup libary build by Mi Casa Verde (Vera) as our main focus. 
+We used to use Vera as a platform to connect to devices. This should no longer be the only case, since the platform should be able to connect to any devices within the network. But still, for testing http requests propose, so we are continuing using Luup library build by Mi Casa Verde (Vera) as our main focus. 
 
 [Here](http://wiki.micasaverde.com/index.php/Main_Page) is the details of the Vera set ups. 
 
@@ -255,7 +255,7 @@ There is challenges of integrate with the existing parts in order to work proper
 The structure of the implementation is separated by functionalities in to four main modules: design control, planning, device control, and plan execution. 
 
 * Design Control
-	* Design control is the controller of the operation. It responsibility is take inputs that represent the environments, the assocated rewards and goals in order to builid the system.
+	* Design control is the controller of the operation. It responsibility is take inputs that represent the environments, the associated rewards and goals in order to builid the system.
 * Planning
 	* Planning is the brain of the operation, its responsibility is construct the decision tree based on information inputs from design control.
 * Device Hub
