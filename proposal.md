@@ -22,12 +22,20 @@ New SNAP interface is expect to have unified interface links to physical sensors
 	* Visualize Control Flow
 	* Change the status, probability, and transactions
 
+* Logic validation
+	* Environment is possible to exists
+	* User have the ability to reach the target
+	* Sensors can provide enough information for system to schdule
+	* 
+
 * Devices control & feedbacks
 	* Add devices
 	* Feed forward and backward testing: 
 		* trigger individual devices to follow a command for device testing
 	* Trigger group of devices to follow a sets of commands for testing:
 		* Processing logic: a set of commands to test one logic set, testing results equal to expect results
+
+![targets_overview](diagrams/targets.png)
 
 ### [&#xf066;] **Minimum functionailities**
 The minimum functionalities of this module should include the followings:
