@@ -25,8 +25,8 @@ New SNAP interface is expect to have unified interface links to physical sensors
 * Logic validation
 	* Environment is possible to exists
 	* User have the ability to reach the target
-	* Sensors can provide enough information for system to schdule
-	* 
+	* Sensors can provide enough information for system to schedule
+	* Other validations
 
 * Devices control & feedbacks
 	* Add devices
