@@ -3,7 +3,7 @@
 -------------
 &#xf040; By Aaron Li, May 4, 2016. May the force.
 
-### [&#xf192;] **Targets**
+### [&#xf192;] **General Targets**
 The Syndetic Assistance Processes(SNAP) 2.0 is expected to upgrade and integrate old SNAP systems, based on two previous SNAP projects:
 
 * SNAP Planner
@@ -14,6 +14,8 @@ The Syndetic Assistance Processes(SNAP) 2.0 is expected to upgrade and integrate
 Skip the introduction here. Intros are in the links.
 
 The overall target is having a **easy** to use **graphic interface** to let engineers, developers, or common users **set up the system** with **no implementation or even understanding knowledge** of activity recognition intelligent environments. 
+
+**Updates**: By meeting content issued in May 10, 2016. The project is changed to targeted specificity for health care personnel for set up environment for Alzheimer's disease patience as a test case, also it gives freedom to add different sensors.  
 
 New SNAP interface is expect to have unified interface links to physical sensors. Targeted to allow users to do the followings:
 
@@ -43,7 +45,8 @@ New SNAP interface is expect to have unified interface links to physical sensors
 The minimum functionalities of this module should include the followings:
 
 #### Display
-* Diagram
+* Diagram represent in real world objects, and human objects, as media care personal
+* Add and modify objects as developer admin persepetive
 * Response from devices
 	* Online status
 	* Response status
@@ -104,7 +107,7 @@ The graph is represented in UML, expected to follow [UML Standards 2.5](http://w
 > * Universal and easy: UML is easy to understand by both developer and none developer, fit for both situations, good for convey unambiguous work flows
 > * Built for OO: since we are focus on mapping situations and devices to real world, a OO approach is the way to go
 > * Standardized
-		
+
 ### [&#xf085;] **Frameworks**
 #### Control Flow Construction: [symbolicPerseusJava](https://cs.uwaterloo.ca/~jhoey/research/spudd/symbolicPerseusJava.tar.gz)
 
