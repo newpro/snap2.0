@@ -33,7 +33,7 @@ For each role in the system, the users should be able to login as the role, and 
 
 The workflow of one user can be expressed by the diagram: 
 <p align="center">
-  <img src="diagrams/interface_workflow.png" width="550"/>
+  <img src="../diagrams/interface_workflow.png" width="550"/>
 </p>
 
 ### [&#xf1c0;] **Database Outline**
@@ -45,7 +45,7 @@ In order to support the knowledge base, the database have to support tracking an
 In a high level view, human act on environment objects, trigger change of status in sensors. Which can be indicate as following: 
 
 <p align="center">
-  <img src="diagrams/interface_db_highlevel.png" width="550"/>
+  <img src="../diagrams/interface_db_highlevel.png" width="550"/>
 </p>
 
 But unfortunately, this is not merely enough to represent by db, there are several questions remain: 
@@ -61,17 +61,17 @@ In order to answer those questions, we have to investigate further to build rela
 
 Sensors attached to environment objects, a change in environment objects reflect in change of sensors. Only one set of sensors can attach to one kind of environment objects, so we group both sensors and environment objects into groups.
 
-![db_es](diagrams/interface_db_es.png)
+![db_es](../diagrams/interface_db_es.png)
 
 #### Human & Environment Objects
 
 Human interact with environment objects. Only one set of environment object is allow to interact by human, and the actions are limited. Human object is divided into categories as well to represent different level of patience, to divide the ability of patience.
 
-![db_ho](diagrams/interface_db_ho.png)
+![db_ho](../diagrams/interface_db_ho.png)
 
 #### Human , Sensors and Environment Objects
 
-![db_overall](diagrams/interface_db_overall.png)
+![db_overall](../diagrams/interface_db_overall.png)
 
 ### [&#xf0c0;] **Roles**
 
@@ -202,4 +202,4 @@ Medical care experts are experts that study and know the patience behaviours, no
 
 The following graph marks the access right of all three parties.
 
-![collaboration_overview](diagrams/interface_db_collabration.png)
+![collaboration_overview](../diagrams/interface_db_collabration.png)
