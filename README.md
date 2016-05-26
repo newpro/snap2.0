@@ -12,34 +12,37 @@ For detail, look into [porposal](proposal.md).
 
 ### [&#xf0c0;] **Contacts**
 
-#### [&#xf06e;] Supervise Professor: 
+#### [&#xf06e;] Supervise Professor:
 
 [Jesse Hoey](https://cs.uwaterloo.ca/~jhoey/)
-Associate Professor (Health Informatics and AI)
-David R. Cheriton School of Computer Science
-University of Waterloo
-Email: jhoey@cs.uwaterloo.ca
+
+* Associate Professor (Health Informatics and AI)
+* David R. Cheriton School of Computer Science
+* University of Waterloo
+* Email: jhoey@cs.uwaterloo.ca
 
 #### [&#xf19d;] Research Lead:
 
 [Dan Wang](https://ca.linkedin.com/in/dan-wang-089935b0)
-Master Candidate
-University of Waterloo
-Email: d97wang@uwaterloo.ca 
+
+* Master Candidate
+* University of Waterloo
+* Email: d97wang@uwaterloo.ca 
 
 #### [&#xf135;] Develop Lead:
 
 [Aaron Li](https://ca.linkedin.com/in/aaron-li-01215748)
-Research Assistent
-University of Waterloo
-Email: w89li@uwaterloo.ca
+
+* Research Assistent
+* University of Waterloo
+* Email: w89li@uwaterloo.ca
 
 ### [&#xf0c5;] **Documents Index**
 
-[Overviews and Structure](proposal.md)
-[Design Control](design_control/README.md)
+* [Overviews and Structure](proposal.md)
+* [Design Control](design_control/README.md)
 
 ### [&#xf11e;] **Progress Tracking**
 
-May 9, 2016 - Finish Outlines
-May 20, 2016 - Finish General Design and DB of Design Control
+* May 9, 2016 - Finish Outlines
+* May 20, 2016 - Finish General Design and DB of Design Control
