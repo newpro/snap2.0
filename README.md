@@ -12,30 +12,10 @@ For detail, look into [porposal](proposal.md).
 
 ### [&#xf0c0;] **Contacts**
 
-#### [&#xf06e;] Supervise Professor:
-
-[Jesse Hoey](https://cs.uwaterloo.ca/~jhoey/)
-
-* Associate Professor (Health Informatics and AI)
-* David R. Cheriton School of Computer Science
-* University of Waterloo
-* Email: jhoey@cs.uwaterloo.ca
-
-#### [&#xf19d;] Research Lead:
-
-[Dan Wang](https://ca.linkedin.com/in/dan-wang-089935b0)
-
-* Master Candidate
-* University of Waterloo
-* Email: d97wang@uwaterloo.ca 
-
-#### [&#xf135;] Develop Lead:
-
-[Aaron Li](https://ca.linkedin.com/in/aaron-li-01215748)
-
-* Research Assistent
-* University of Waterloo
-* Email: w89li@uwaterloo.ca
+[&#xf06e;] Supervise Professor |[&#xf19d;] Research Lead |[&#xf135;] Develop Lead
+------------ | ------------- | -------------
+[Jesse Hoey](https://cs.uwaterloo.ca/~jhoey/) | [Dan Wang](https://ca.linkedin.com/in/dan-wang-089935b0) | [Aaron Li](https://ca.linkedin.com/in/aaron-li-01215748)
+Associate Professor <br> University of Waterloo <br> jhoey@cs.uwaterloo.ca | Master Candidate <br> University of Waterloo <br> d97wang@uwaterloo.ca | Research Assistent <br>University of Waterloo<br>w89li@uwaterloo.ca
 
 ### [&#xf0c5;] **Documents Index**
 
