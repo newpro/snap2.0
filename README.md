@@ -26,3 +26,6 @@ Associate Professor <br> University of Waterloo <br> jhoey@cs.uwaterloo.ca | Mas
 
 * May 9, 2016 - Finish Outlines
 * May 20, 2016 - Finish General Design and DB of Design Control
+* June 2, 2016 - "Pickles" is here!
+	* Finish design the design control software structure
+	* Start build the first prototype "pickles" (reference from [Futurama](http://futurama.wikia.com/wiki/Pickles)) on GitLab private repo!
