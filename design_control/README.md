@@ -64,7 +64,11 @@ The roles including the following:
 * Medical Care Experts
 * Caregivers
 
-See the details [here](./roles.md).
+For a more direct view of access rights, see the following graph:
+
+![collaboration_overview](../diagrams/interface_db_collabration.png)
+
+See more details [here](./roles.md).
 
 ### [&#xf1cb;] **Software Framework - Admin Expert System**
 
