@@ -35,11 +35,9 @@ In general, the software framework should be able to allow for one expert to do 
 		* Shut down one execution plan in an emergency unsafety situations
 		* Able to file report to ask for other experts to correct security issues
 
-All non-functional requirements overview:
-
 ### [&#xf0e4;] **Non-functional requirements Listing**
 
-#### Audit and contro
+#### Audit and control
 
 Every new member should pass audit by a human member in the system in order to be added in.
 
