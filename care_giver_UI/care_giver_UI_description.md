@@ -49,8 +49,10 @@ The newly added goal and its corresponding task network should be firstly proces
  - Furniture category-Sensor
  - Sensor-Step
  - Step-Precondition/Effects
+
 #####Required data from Home Environment
  - object in the environment. The images(or tags) in the interface should be associated to an real object in the environment. 
+
 #####Generated data 
  - sensor-furniture object (This table will be used to tracking the system states)
  - knowledge base
