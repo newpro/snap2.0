@@ -1,8 +1,8 @@
 ## Caregiver User Interface Documentation ##
 -------------
 
-&#xf040; By Dan Wang, Jun 5, 2016. 
-&#xf062; Updated by Aaron Li, Jun 8, 2016, after group discussion. 
+- &#xf040; By Dan Wang, Jun 5, 2016. 
+- &#xf062; Updated by Aaron Li, Jun 8, 2016, Add more details.
 
 ### [&#xf192;] **Targets and Requirements**
 
@@ -58,6 +58,7 @@ In this phase, the caregiver should go through the following steps.
 	 - Ask the user to specify the **Step Name**  by looking into the popped steps selection lists associated with this sensor, and select one of the step name. (??? give recommendation of the step name by combine the action and object) When a step name is select, its preconditions and effects are also specified by searching on the **step precondition effects** table. (??? how to define this table?)
 
 > **Tasks Arragement Guidelines** [&#xf05a;]
+> 
 > Order Relations of Subtasks
 > 
 > An hierarchical task network indicates how a composite task can be decomposed into simpler subtasks. The sub-tasks of a composite task can have the following relations: 
