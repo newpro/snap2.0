@@ -1,8 +1,9 @@
 ## Caregiver User Interface Documentation ##
--------------
 
 - &#xf040; By Dan Wang, Jun 5, 2016. 
 - &#xf062; Updated by Aaron Li, Jun 8, 2016, Add more details.
+
+-------------
 
 ### [&#xf192;] **Targets and Requirements**
 
@@ -29,22 +30,26 @@ In this phase, the caregiver should go through the following steps.
 
 #### Modify An Existing Tasks
 
-- Configure the **task network** of the goal according to user interface prompt (???interface prompt)
- - Step 1: For each task in the network, ask the user "**Does this task can to decomposed into subtasks?**"
- - Step 2: If yes, ask the user to input all the subtasks and specify the **order relations** (??? for details please refer to "order relations of sub-tasks" section) of the sub-tasks. 
- - Repeat Step 1 and Step 2 until the user specified the complete task network for the goal. (??? How to determine this?) 
-- Machine configure a **primitive step**. When the user says the current node cannot be decomposed into sub-tasks, then this node is a leaf node, it stands for a primitive step in real world, and will change the states of some real objects. (???) A primitive step should be **only relative to exactly one associated action**, and this information is showed to caregiver in order for them to complete the other information correctly. To demonstrate what is a primitive step in details, look at the following examples:
-	- Example 1: turn on the light
-		- This **is** a primitive step, since it consists of only one action:
-			- Turn on
-	- Example 2: Fill 1/3 of the tea kettle with water
-		- This **is** a primitive step, since it consists of only one action:
-			- Fill
-	- Example 3: boil the tea
-		- This **is not** a primitive step, since it does not consists of exactly one action. Instead, it possibly consists of the followings:
-			- Put the filled tea kettle on stove
-			- turn on the stove
-			- wait until noise made
+- Configure the **task network** of the goal according to following user interface prompts 
+ - Step 1: For each task in the network, ask the user "**Can this task decompose into subtasks?**"
+ - Step 2: If yes, ask the user to input all the subtasks and specify the **order relations** (for details please refer to "order relations of sub-tasks" section) of the sub-tasks. 
+ - Repeat Step 1 and Step 2 until the user specified the complete task network for the goal. 
+	 - A complete task network is a network that all goals are reduced to "primitive steps". Explanation as following.
+- Machine help caregiver to configure a **primitive step**. 
+	- A "primitive step" means this step **only relative to exactly one associated action**. 
+	- A "primitive step" is a **leaf node** on the Hierarchical Task Network (HTN). Represent a state that the **system has the ability to determine if it finished**.
+	- To demonstrate what is a primitive step in details, look at the following examples:
+		- Example 1: turn on the light
+			- This is a primitive step, since it consists of only one action:
+				- Turn on
+		- Example 2: Fill 1/3 of the tea kettle with water
+			- This is a primitive step, since it consists of only one action:
+				- Fill
+		- Example 3: boil the tea
+			- This is **not** a primitive step, since it does not consists of exactly one action, and it should be decomposed further by caregiver. Instead, it possibly consists of the followings:
+				- Put the filled tea kettle on stove
+				- turn on the stove
+				- wait until noise made
 
 #### Specify Sensor For Furniture
 
@@ -55,10 +60,9 @@ In this phase, the caregiver should go through the following steps.
 	 - Identify associated sensors for the object by searching on the **sensor** table in HSE DB
 		 - If the user already has the sensor, ask the user register the sensor on the system (this information will be stored into the **Perceive table** in HSE DB) and attach the sensor to the above-mentioned object. 
 		 - If the user do not have the sensor yet, suggest the online purchase choices for the user. If the user confirm, the order will be made automatically by the system. At the same time, in **Perceive table** table, this furniture is recorded as "no attached sensor".
-	 - Ask the user to specify the **Step Name**  by looking into the popped steps selection lists associated with this sensor, and select one of the step name. (??? give recommendation of the step name by combine the action and object) When a step name is select, its preconditions and effects are also specified by searching on the **step precondition effects** table. (??? how to define this table?)
+	 - Ask the user to specify the **Step Name**  by looking into the popped steps selection lists associated with this sensor, and select one of the step name.  When a step name is select, its preconditions and effects are also specified by searching on the **step precondition effects** table.
 
-> **Tasks Arragement Guidelines** [&#xf05a;]
-> 
+> **Extra Info: ** [&#xf05a;]
 > Order Relations of Subtasks
 > 
 > An hierarchical task network indicates how a composite task can be decomposed into simpler subtasks. The sub-tasks of a composite task can have the following relations: 
