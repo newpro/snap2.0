@@ -7,7 +7,7 @@
 
 ### [&#xf192;] **Targets and Requirements**
 
-Caregiver component belongs to the second part of the system, the UI of "Planning" phase (see [Implementation structure](../proposal.md#-implementation-structure)). 
+Caregiver component belongs to the second part of the system, the UI of "Planning" phase (see [Implementation structure](../proposal.md#-implementation-structure)).
 
 The "caregiver user interface" module is an interactive interface for caregivers to set up the domain knowledge for the intelligent assistance agent. The operations on this interface should be and not limit to:
 
@@ -17,7 +17,7 @@ The "caregiver user interface" module is an interactive interface for caregivers
 
 The details will be added into the following paragraphs.
 
-### [&#xf0a1;] **UI Explanation**
+### [&#xf11e;] **User Workflow**
 
 Based on needs, the caregiver plan to add the task network of a new goal to the system, in order to expand the recognition capacity of the intelligent system, based on the domain knowledge that already been stored in last phase ([design control](../design_control/README.md)).
 In this phase, the caregiver should go through the following steps.
@@ -30,13 +30,13 @@ In this phase, the caregiver should go through the following steps.
 
 #### Modify An Existing Tasks
 
-- Configure the **task network** of the goal according to following user interface prompts 
+- Configure the **task network** of the goal according to following user interface prompts
  - Step 1: For each task in the network, ask the user "**Can this task decompose into subtasks?**"
- - Step 2: If yes, ask the user to input all the subtasks and specify the **order relations** (for details please refer to "order relations of sub-tasks" section) of the sub-tasks. 
- - Repeat Step 1 and Step 2 until the user specified the complete task network for the goal. 
+ - Step 2: If yes, ask the user to input all the subtasks and specify the **order relations** (for details please refer to "order relations of sub-tasks" section) of the sub-tasks.
+ - Repeat Step 1 and Step 2 until the user specified the complete task network for the goal.
 	 - A complete task network is a network that all goals are reduced to "primitive steps". Explanation as following.
 - Machine help caregiver to configure a **primitive step**. 
-	- A "primitive step" means this step **only relative to exactly one associated action**. 
+	- A "primitive step" means this step **only relative to exactly one associated action**.
 	- A "primitive step" is a **leaf node** on the Hierarchical Task Network (HTN). Represent a state that the **system has the ability to determine if it finished**.
 	- To demonstrate what is a primitive step in details, look at the following examples:
 		- Example 1: turn on the light
@@ -54,7 +54,7 @@ In this phase, the caregiver should go through the following steps.
 #### Specify Sensor For Furniture
 
  - Step 1: Prompt user with "Please drag the related furniture(s) of this step to the operating window"
-	 - In this step program will intend to 
+	 - In this step program will intend to
  - Step 2: For each objects in the window:
 	 - Identify the furniture category of the object based on the **furniture** table in HSE DB
 	 - Identify associated sensors for the object by searching on the **sensor** table in HSE DB
@@ -62,10 +62,10 @@ In this phase, the caregiver should go through the following steps.
 		 - If the user do not have the sensor yet, suggest the online purchase choices for the user. If the user confirm, the order will be made automatically by the system. At the same time, in **Perceive table** table, this furniture is recorded as "no attached sensor".
 	 - Ask the user to specify the **Step Name**  by looking into the popped steps selection lists associated with this sensor, and select one of the step name.  When a step name is select, its preconditions and effects are also specified by searching on the **step precondition effects** table.
 
-> **Extra Info: ** [&#xf05a;]
+> **Extra Info** [&#xf05a;]
 > Order Relations of Subtasks
 > 
-> An hierarchical task network indicates how a composite task can be decomposed into simpler subtasks. The sub-tasks of a composite task can have the following relations: 
+> An hierarchical task network indicates how a composite task can be decomposed into simpler subtasks. The sub-tasks of a composite task can have the following relations:
 > 
 > - **Alternative subtasks**: the composite tasks have multiple ways to decompose, which way to choose depends on the current environment states.
 > - **Ordered subtasks**: the sub-tasks must be implemented in order.
@@ -73,6 +73,81 @@ In this phase, the caregiver should go through the following steps.
 > - **Partially ordered subtasks**:  some of the subtasks must be implemented in order, when to implement the other sub-tasks does not matter.
 
 ![caregiver_workflow](../diagrams/caregiver_workflow.png)
+
+### [&#xf1c0;] **Database Structure**
+
+The database that is relative to the caregiver's operations, and relative functionalities, are defined as **knowledge base**, and stored as Hierarchical Task Network (HTN) structure.
+
+#### Primitive Step Representation in HTN
+(This kind of information should be stored in the HSE DB, so after correcting this, attach them to the HSE DB folder. We are borrow the expression from other's work, so we need reference. Please have a look my modifications and comments. Thanks)
+We are using the representation format in [SHOP2](http://www.aaai.org/Papers/JAIR/Vol20/JAIR-2013), a HTN planner, to express an operator. An operator is an abstraction of a primitive task in the knowledge base. An operator contains the following components:
+
+* **Purpose**: the propose of the task
+	* **Action**: the name of the action.
+	* **Issuer**: the party that should issue this action, this include all property in this issuer as well.
+	* **Receiver**: the party that received this action, this include all property in this receiver as well.
+* **Precondition List**: a list of conditions that should fit before perform this action 
+	* Can be "and" or "or" relationship between conditions
+	* One condition can be one of the following types: (good summary. But it might be not limited to those three. Anyway, you can keep it as now. If we encouter other formats, we can add them into here.)
+		* **Location Condition**:
+			* **Preposition**: a word to represent the location relationship
+			* **Object**: the object it should locate
+			* **Location**: the location the object should be located
+		* **Status Condition**:
+			* **Object**: the object that should have the status
+			* **Status**: the status that the object should has
+		* **Ability Condition**:
+			* **Object**: the object that should obtain the ability
+			* **Ability**: the ability that the object should obtain
+			* **Value**: the minimal value that the object has to have.
+* **Effect**: the effect that this action should bring
+	* **Removing List**: A list of effect should remove after finish the action
+	* **Adding List**: A list of effects should add after finish the action
+
+> Further Explanation [&#xf05a;]
+> 
+> The **purpose**, which always include action, issuer, and receiver, can be think as **the head of the action**. The action attribute is the name that represent the whole action; the issuer and receiver, which include their properties, provide all perimeters needed to measure action availability and effect. 
+> The **removes in effects**, indicates **what will change** after the action finished.
+> The **adding in effects**, not only indicates **what will change** after the action finished, but also **a indicator for measuring the action is finished**. E.g. when all conditions are meet, the action is finished.
+
+
+For example, a task of turn on the light might be expand into this structure:
+
+* Purpose: 
+	* Action: Turn on
+	* Issuer: Patient
+	* Receiver: Light Switch
+* Precondition Array:
+	* Condition 1:(this one looks wired)
+		* Preposition: Near
+		* Object: Light Switch
+		* Location: Location 1
+	* Condition 2:
+		* Preposition: At
+		* Object: Patient
+		* Location: Location 1
+	* Conditions 3:
+		* Object: Light Switch
+		* Status: Off
+	* Conditions 4: (condition 4 and condition 5, you don't need to consider in the expert's database, so delete them)
+		* Object: Patient
+		* Ability: Recognition
+		* Value: 4/5
+	* Conditions 5:
+		* Object: Patient
+		* Ability: Affordance
+		* Value: 3/5
+* Effect:
+	* Remove Array:
+		* Condition 1:
+			* Object: Light Switch
+			* Status: Off
+	* Adding Array:
+		* Condition 1:
+			* Object: Light Switch
+			* Status: On
+
+### [&#xf0e8;] **Implementation Structure**
 
 #### Domain Knowledge Processing
 
