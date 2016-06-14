@@ -62,7 +62,7 @@ In this phase, the caregiver should go through the following steps.
 		 - If the user do not have the sensor yet, suggest the online purchase choices for the user. If the user confirm, the order will be made automatically by the system. At the same time, in **Perceive table** table, this furniture is recorded as "no attached sensor".
 	 - Ask the user to specify the **Step Name**  by looking into the popped steps selection lists associated with this sensor, and select one of the step name.  When a step name is select, its preconditions and effects are also specified by searching on the **step precondition effects** table.
 
-> **Extra Info: ** [&#xf05a;]
+> **Extra Info** [&#xf05a;]
 > Order Relations of Subtasks
 > 
 > An hierarchical task network indicates how a composite task can be decomposed into simpler subtasks. The sub-tasks of a composite task can have the following relations:
@@ -80,10 +80,12 @@ The database that is relative to the caregiver's operations, and relative functi
 
 #### Primitive Step Representation in HTN
 (This kind of information should be stored in the HSE DB, so after correcting this, attach them to the HSE DB folder. We are borrow the expression from other's work, so we need reference. Please have a look my modifications and comments. Thanks)
-We are using the representation format in SHOP2[1], a powerful HTN planner, to express an operator. An operator is an abstraction of a primitive task in the knowledge base. An operator contains the following components:
-* **head**: the propose of the task
-	* **operator's name**: an easy-understanding step name
-	* **parameters**: indicates related parties of this step. Usually at least includes the object that issue this action, and the object received this action. (::::here the parameter should be a list, not necessarily only two party)
+We are using the representation format in [SHOP2](http://www.aaai.org/Papers/JAIR/Vol20/JAIR-2013), a HTN planner, to express an operator. An operator is an abstraction of a primitive task in the knowledge base. An operator contains the following components:
+
+* **Purpose**: the propose of the task
+	* **Action**: the name of the action.
+	* **Issuer**: the party that should issue this action, this include all property in this issuer as well.
+	* **Receiver**: the party that received this action, this include all property in this receiver as well.
 * **Precondition List**: a list of conditions that should fit before perform this action 
 	* Can be "and" or "or" relationship between conditions
 	* One condition can be one of the following types: (good summary. But it might be not limited to those three. Anyway, you can keep it as now. If we encouter other formats, we can add them into here.)
@@ -97,13 +99,21 @@ We are using the representation format in SHOP2[1], a powerful HTN planner, to e
 		* **Ability Condition**:
 			* **Object**: the object that should obtain the ability
 			* **Ability**: the ability that the object should obtain
+			* **Value**: the minimal value that the object has to have.
 * **Effect**: the effect that this action should bring
-	* **Removing List**: A list of effect should remove after finish the action 
+	* **Removing List**: A list of effect should remove after finish the action
 	* **Adding List**: A list of effects should add after finish the action
+
+> Further Explanation [&#xf05a;]
+> 
+> The **purpose**, which always include action, issuer, and receiver, can be think as **the head of the action**. The action attribute is the name that represent the whole action; the issuer and receiver, which include their properties, provide all perimeters needed to measure action availability and effect. 
+> The **removes in effects**, indicates **what will change** after the action finished.
+> The **adding in effects**, not only indicates **what will change** after the action finished, but also **a indicator for measuring the action is finished**. E.g. when all conditions are meet, the action is finished.
+
 
 For example, a task of turn on the light might be expand into this structure:
 
-* Propose: 
+* Purpose: 
 	* Action: Turn on
 	* Issuer: Patient
 	* Receiver: Light Switch
@@ -122,9 +132,11 @@ For example, a task of turn on the light might be expand into this structure:
 	* Conditions 4: (condition 4 and condition 5, you don't need to consider in the expert's database, so delete them)
 		* Object: Patient
 		* Ability: Recognition
+		* Value: 4/5
 	* Conditions 5:
 		* Object: Patient
 		* Ability: Affordance
+		* Value: 3/5
 * Effect:
 	* Remove Array:
 		* Condition 1:
@@ -159,6 +171,3 @@ The newly added goal and its corresponding task network should be firstly proces
  - sensor-furniture object (This table will be used to tracking the system states)
  - knowledge base
  
-
-#####Reference
-[1]http://www.aaai.org/Papers/JAIR/Vol20/JAIR-2013
