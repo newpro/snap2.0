@@ -79,16 +79,14 @@ In this phase, the caregiver should go through the following steps.
 The database that is relative to the caregiver's operations, and relative functionalities, are defined as **knowledge base**, and stored as Hierarchical Task Network (HTN) structure.
 
 #### Primitive Step Representation in HTN
-
-As a important part of HTN, a primitive step, as the leaf node of the tree, is represent in the following components:
-
-* **Propose**: the propose of the task
-	* **Action**: the action it should perform
-	* **Issuer**: the party that should issue this action
-	* **Receiver**: the party that received this action
+(This kind of information should be stored in the HSE DB, so after correcting this, attach them to the HSE DB folder. We are borrow the expression from other's work, so we need reference. Please have a look my modifications and comments. Thanks)
+We are using the representation format in SHOP2[1], a powerful HTN planner, to express an operator. An operator is an abstraction of a primitive task in the knowledge base. An operator contains the following components:
+* **head**: the propose of the task
+	* **operator's name**: an easy-understanding step name
+	* **parameters**: indicates related parties of this step. Usually at least includes the object that issue this action, and the object received this action. (::::here the parameter should be a list, not necessarily only two party)
 * **Precondition List**: a list of conditions that should fit before perform this action 
 	* Can be "and" or "or" relationship between conditions
-	* One condition can be one of the following types:
+	* One condition can be one of the following types: (good summary. But it might be not limited to those three. Anyway, you can keep it as now. If we encouter other formats, we can add them into here.)
 		* **Location Condition**:
 			* **Preposition**: a word to represent the location relationship
 			* **Object**: the object it should locate
@@ -110,7 +108,7 @@ For example, a task of turn on the light might be expand into this structure:
 	* Issuer: Patient
 	* Receiver: Light Switch
 * Precondition Array:
-	* Condition 1:
+	* Condition 1:(this one looks wired)
 		* Preposition: Near
 		* Object: Light Switch
 		* Location: Location 1
@@ -121,7 +119,7 @@ For example, a task of turn on the light might be expand into this structure:
 	* Conditions 3:
 		* Object: Light Switch
 		* Status: Off
-	* Conditions 4:
+	* Conditions 4: (condition 4 and condition 5, you don't need to consider in the expert's database, so delete them)
 		* Object: Patient
 		* Ability: Recognition
 	* Conditions 5:
@@ -161,3 +159,6 @@ The newly added goal and its corresponding task network should be firstly proces
  - sensor-furniture object (This table will be used to tracking the system states)
  - knowledge base
  
+
+#####Reference
+[1]http://www.aaai.org/Papers/JAIR/Vol20/JAIR-2013
