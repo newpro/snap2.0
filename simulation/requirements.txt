@@ -1,0 +1,4 @@
+gcloud
+pyrebase
+flask
+flask_restful
