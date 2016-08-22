@@ -338,16 +338,16 @@ class SensorType(_DBObject):
         _DBObject.hook(self, name)
         return self
     
-    def new(self, name, reliability, states, multiple=False):
+    def new(self, name, reliability, states, result_type, multiple=False):
         """
-        # Create a new Sensor type
-        
-        SensorType().new('new', 0.8, ['on', 'off'])
-        None
+        Example:
+        # Create a binary sensor type
+        binary_type = SensorType().new('binary', 0.9, ['on', 'off'], 'binary_result')
         """
         _DBObject.new(self, name, {
             'reliability': reliability,
             'multiple': multiple,
+            'result_type': result_type,
             'states': _to_dict(states, type_allowed=['list'])
         })
         return self

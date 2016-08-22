@@ -1,0 +1,145 @@
+{
+    "session":{
+	"HASHED1":{
+	    "name":"test1",
+	    "lock":false,
+	    "sensor_states": {
+		"faucet_sensor1": {
+		    "state": "off"
+		},
+		"kinect1": {
+		    "state": "default"
+		}
+	    },
+	    "object_states": {
+		"faucet_1": {
+		    "location": "kitchen",
+		    "state": "off"
+		}
+	    }
+	}
+    },
+    "hardwares":{
+	"sensors": {
+	    "faucet_sensor1": {
+		"descriptions": "faucet sensor attached on kitchener, for on/off",
+		"type": "binary",
+		"watch": {
+		    "off": {
+			"object": "faucet1",
+			"state": "off"
+		    },
+		    "on": {
+			"object": "faucet1",
+			"state": "on"
+		    }
+		}
+	    },
+	    "kinect1": {
+		"descriptions": "kinect sensor above kitchen sink",
+		"type": "kinect"
+	    }
+	},
+	"rooms": {
+	    "kitchen": true
+	},
+	"objects":{
+	    "faucet1":{
+		"descriptions": "kitchen faucet",
+		"status": {
+		    "location": "kitchen",
+		    "state": {
+			"on": true,
+			"off": true
+		    }
+		},
+		"watchers": {
+		    "off": {
+			"sensor": "faucet_sensor1",
+			"state": "off"
+		    },
+		    "on": {
+			"sensor": "faucet_sensor1",
+			"state": "on"
+		    }
+		}
+	    }
+	}
+    },
+    "knowledge":{
+	"sensor_types": {
+	    "binary": {
+		"reliability": 0.9,
+		"multiple": false,
+		"result_type": "binary_result"
+	    },
+	    "kinect": {
+		"reliability": 0.7,
+		"multiple": true,
+		"result_type": "kinect_result"
+	    }
+	},
+	"goals":{
+	    "wash_hand": {
+		"ordered": true,
+		"content": {
+		    "HASHED1": {
+			"set": false,
+			"name": "turn on faucet",
+			"content": "turn_on_faucet"
+		    },
+		    "HASHED2": {
+			"set": true,
+			"name": "clean hand",
+			"content": "clean_hand"
+		    },
+		    "HASHED3": {
+			"set": false,
+			"name": "turn off facuet",
+			"content": {
+			    "HASHED1": "turn_off_faucet"
+			}
+		    }
+		}
+	    }
+	},
+	"tasks":{
+	    "clean_hand":{
+		"HASHED1": "use_soap",
+		"HASHED2": "rinse_hand"
+	    }
+	},
+	"steps":{
+	    "turn_on_faucet": {
+		"sensor": "faucet_sensor1",
+		"attribute": {
+		    "name": "status",
+		    "previous": "off",
+		    "current": "on"
+		}
+	    },
+	    "turn_off_faucet": {
+		"sensor": "faucet_sensor1",
+		"attribute": {
+		    "name": "status",
+		    "previous": "on",
+		    "current": "off"
+		}
+	    },
+	    "use_soap": {
+		"sensor": "kinect_kitchen",
+		"attribute": {
+		    "name": "kinect_result",
+		    "current": "use_soap"
+		}
+	    },
+	    "rinse_hand": {
+		"sensor": "kinect1",
+		"attribute": {
+		    "name": "kinect_result",
+		    "current": "rinse_hand"
+		}
+	    }
+	}
+    }
+}
