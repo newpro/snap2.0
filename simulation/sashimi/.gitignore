@@ -94,6 +94,6 @@ ENV/
 .ropeproject
 
 # added
-~
+*~
 server_cred.json
 secret.json
