@@ -1,8 +1,7 @@
 {
-    "session":{
+    "sessions":{
 	"HASHED1":{
 	    "name":"test1",
-	    "lock":false,
 	    "sensor_states": {
 		"faucet_sensor1": {
 		    "state": "off"
